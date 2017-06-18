@@ -47,4 +47,5 @@ service tomcat8 start
 ## Set Auto Start for Tomcat Service
 ```
 sudo chkconfig --list tomcat8
+sudo chkconfig tomcat8 on
 ```
