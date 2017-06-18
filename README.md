@@ -1,6 +1,6 @@
 # Install Tomcat 8.x in AWS EC2 Instance (Amazon Linux AMI)
 
-## Software to be installed
+## Software to install
 * Java 8
 * Tomcat 8.x
 
