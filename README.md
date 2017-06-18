@@ -1,4 +1,4 @@
-# Install Tomcat 8.x in AWS (Amazon Linux AMI)
+# Install Tomcat 8.x in AWS EC2 Instance (Amazon Linux AMI)
 
 ## Software to be installed
 * Java 8
@@ -29,7 +29,7 @@ cd /usr/share/tomcat8/conf/
 ```
 
 ## Check Tomcat Installation
-* fuser: to display the process id(PID) of every process using the specified files or file systems
+* fuser: to display the process id(PID) of every process using the specified files
 * netstat: to list out all the network (socket) connections on a system
 ```
 fuser -v -n tcp 8080
