@@ -25,7 +25,10 @@ yum install tomcat8 tomcat8-webapps tomcat8-admin-webapps tomcat8-docs-webapp
 ## Tomcat Paths
 ```
 cd  /usr/share/tomcat8
-cd /usr/share/tomcat8/conf/
+Edit the tomcat-users file: 
+vim /usr/share/tomcat8/conf/tomcat-users.xml
+Add this line according your desired configuration: (vi commands: "i" for insert mode, ":wq" for write an quit, "ESC" key to escape the editing mode)
+<user name="admin" password="YOURPASSWORD" roles="admin,manager,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status" />
 ```
 
 ## Check Tomcat Installation
