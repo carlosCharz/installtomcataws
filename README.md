@@ -28,19 +28,23 @@ service tomcat8 start
 ```
 
 ## Tomcat Paths
+1 Edit the tomcat-users file
 ```
 cd  /usr/share/tomcat8
-Edit the tomcat-users file: 
 vim /usr/share/tomcat8/conf/tomcat-users.xml
-Add this line according your desired configuration: (vi commands: "i" for insert mode, "ESC" key to escape the inserting mode, ":wq" for write an quit)
+```
+2 Add this line according your desired configuration (vi commands: "i" for insert mode, "ESC" key to escape the inserting mode, ":wq" for write an quit)
+```
 <user name="admin" password="YOURPASSWORD" roles="admin,manager,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status" />
 ```
 
 ## Check Tomcat Installation
 * fuser: to display the process id(PID) of every process using the specified files
-* netstat: to list out all the network (socket) connections on a system
 ```
 fuser -v -n tcp 8080
+```
+* netstat: to list out all the network (socket) connections on a system
+```
 netstat -na | grep 8080
 ```
 
