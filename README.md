@@ -22,6 +22,11 @@ yum remove java-1.7.0-openjdk
 yum install tomcat8 tomcat8-webapps tomcat8-admin-webapps tomcat8-docs-webapp
 ```
 
+## Start Tomcat Service
+```
+service tomcat8 start
+```
+
 ## Tomcat Paths
 ```
 cd  /usr/share/tomcat8
@@ -37,11 +42,6 @@ Add this line according your desired configuration: (vi commands: "i" for insert
 ```
 fuser -v -n tcp 8080
 netstat -na | grep 8080
-```
-
-## Start Tomcat Service
-```
-service tomcat8 start
 ```
 
 ## Set Auto Start for Tomcat Service
