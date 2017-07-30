@@ -54,12 +54,12 @@ sudo chkconfig --list tomcat8
 sudo chkconfig tomcat8 on
 ```
 
-## install nginx
+## Install nginx
 ```
 yum install nginx
 ```
 
-## change nginx to proxy tomcat
+## Change nginx to proxy tomcat
 ```
 vi /etc/nginx/nginx.conf
 ```
@@ -72,7 +72,7 @@ proxy_read_timeout 300;
 proxy_pass http://localhost:8080;
 }
 ```
-## start nginx
+## Start nginx
 ```
 service nginx start
 ```
