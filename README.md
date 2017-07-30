@@ -61,7 +61,7 @@ yum install nginx
 
 ## change nginx to proxy tomcat
 ```
-vi /etc/nginx/nginx.conf~
+vi /etc/nginx/nginx.conf
 ```
 
 ```
