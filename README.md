@@ -53,3 +53,20 @@ netstat -na | grep 8080
 sudo chkconfig --list tomcat8
 sudo chkconfig tomcat8 on
 ```
+
+## install nginx
+yum install nginx
+
+## change nginx to proxy tomcat
+vi /etc/nginx/nginx.conf
+location /{
+proxy_connect_timeout 300;
+proxy_send_timeout 300;
+proxy_read_timeout 300;
+proxy_pass http://localhost:8080;
+}
+## start nginx
+service nginx start
+## Set Auto Star for Nginx Service
+sudo chkconfig --list nginx
+sudo chkconfig nginx on
