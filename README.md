@@ -81,3 +81,62 @@ service nginx start
 sudo chkconfig --list nginx
 sudo chkconfig nginx on
 ```
+
+## Install PostgreSQL
+```
+sudo yum install postgresql postgresql-server
+```
+
+## Initialize postgresql DB
+```
+sudo service postgresql initdb
+```
+
+## Start PostgreSQL
+```
+sudo service postgresql start
+```
+
+## Login in with postgre
+```
+sudo -u postgres psql
+```
+
+## Change password
+```
+\password postgres
+```
+
+## Quit 
+```
+\q
+```
+## Enable remote access
+```
+sudo vi /var/lib/pgsql9/data/pg_hba.conf
+```
+Add you IP to trust IP
+```
+host all all 125.69.29.0/24     trust
+```
+Also change this line
+```
+host    all             all             127.0.0.1/32            md5
+```
+
+```
+sudo vi /var/lib/pgsql9/data/postgresql.conf
+```
+Change 
+```
+#listen_addresses = 'localhost'
+```
+To:
+```
+listen_addresses = '*'
+```
+## Auto Start Postgresql
+```
+sudo chkconfig --list postgresql
+sudo chkconfig postgresql on
+```
