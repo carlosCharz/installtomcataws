@@ -59,17 +59,33 @@ sudo chkconfig tomcat8 on
 yum install nginx
 ```
 
-## Change nginx to proxy tomcat
+## Add Nginx domain binding
 ```
-vi /etc/nginx/nginx.conf
+vi /etc/nginx/conf.d/shenhe.org.conf
 ```
 
 ```
-location /{
-proxy_connect_timeout 300;
-proxy_send_timeout 300;
-proxy_read_timeout 300;
-proxy_pass http://localhost:8080;
+server {
+    listen       80;
+    listen       [::]:80;
+    server_name  shenhe.org;
+    root         /usr/share/nginx/html;
+	location / {
+    	proxy_connect_timeout 300;
+        proxy_send_timeout 300;
+        proxy_read_timeout 300;
+        proxy_pass http://localhost:8080;
+        }
+}
+```
+You can add more binding, it’s similar.
+If you just want nginx to handle static files(like images, javascript, css etc), you just do it like this:
+```
+server {
+    listen       80;
+    listen       [::]:80;
+    server_name  static.shenhe.org;
+    root         /usr/share/nginx/html;
 }
 ```
 ## Start nginx
@@ -107,7 +123,7 @@ sudo -u postgres psql
 \password postgres
 ```
 
-## Quit 
+## Quit
 ```
 \q
 ```
@@ -120,6 +136,11 @@ Add you IP to trust IP
 host all all 125.69.29.0/24     trust
 ```
 Also change this line
+From
+```
+host    all             all             127.0.0.1/32            ident
+```
+To
 ```
 host    all             all             127.0.0.1/32            md5
 ```
