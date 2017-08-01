@@ -53,3 +53,111 @@ netstat -na | grep 8080
 sudo chkconfig --list tomcat8
 sudo chkconfig tomcat8 on
 ```
+
+## Install nginx
+```
+yum install nginx
+```
+
+## Add Nginx domain binding
+```
+vi /etc/nginx/conf.d/shenhe.org.conf
+```
+
+```
+server {
+    listen       80;
+    listen       [::]:80;
+    server_name  shenhe.org;
+    root         /usr/share/nginx/html;
+	location / {
+    	proxy_connect_timeout 300;
+        proxy_send_timeout 300;
+        proxy_read_timeout 300;
+        proxy_pass http://localhost:8080;
+        }
+}
+```
+You can add more binding, it’s similar.
+If you just want nginx to handle static files(like images, javascript, css etc), you just do it like this:
+```
+server {
+    listen       80;
+    listen       [::]:80;
+    server_name  static.shenhe.org;
+    root         /usr/share/nginx/html;
+}
+```
+## Start nginx
+```
+service nginx start
+```
+## Set Auto Star for Nginx Service
+```
+sudo chkconfig --list nginx
+sudo chkconfig nginx on
+```
+
+## Install PostgreSQL
+```
+sudo yum install postgresql postgresql-server
+```
+
+## Initialize postgresql DB
+```
+sudo service postgresql initdb
+```
+
+## Start PostgreSQL
+```
+sudo service postgresql start
+```
+
+## Login in with postgre
+```
+sudo -u postgres psql
+```
+
+## Change password
+```
+\password postgres
+```
+
+## Quit
+```
+\q
+```
+## Enable remote access
+```
+sudo vi /var/lib/pgsql9/data/pg_hba.conf
+```
+Add you IP to trust IP
+```
+host all all 125.69.29.0/24     trust
+```
+Also change this line
+From
+```
+host    all             all             127.0.0.1/32            ident
+```
+To
+```
+host    all             all             127.0.0.1/32            md5
+```
+
+```
+sudo vi /var/lib/pgsql9/data/postgresql.conf
+```
+Change 
+```
+#listen_addresses = 'localhost'
+```
+To:
+```
+listen_addresses = '*'
+```
+## Auto Start Postgresql
+```
+sudo chkconfig --list postgresql
+sudo chkconfig postgresql on
+```
