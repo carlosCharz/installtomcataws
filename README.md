@@ -1,5 +1,7 @@
 # Install Tomcat 8.x in AWS EC2 Instance (Amazon Linux AMI)
 
+You will find as well the configuration of **Nginx** and **PostgreSQL**. Special thanks to @caden for the contribution!
+
 ## Software to install
 * Java 8
 * Tomcat 8.x
@@ -54,12 +56,12 @@ sudo chkconfig --list tomcat8
 sudo chkconfig tomcat8 on
 ```
 
-## Install nginx
+## Install Nginx
 ```
 yum install nginx
 ```
 
-## Add Nginx domain binding
+## Add Nginx Domain Binding
 ```
 vi /etc/nginx/conf.d/shenhe.org.conf
 ```
@@ -78,8 +80,8 @@ server {
         }
 }
 ```
-You can add more binding, it’s similar.
-If you just want nginx to handle static files(like images, javascript, css etc), you just do it like this:
+You can add more bindings. It’s similar.
+If you just want nginx to handle static files (like images, javascript, css etc), you just do it like this:
 ```
 server {
     listen       80;
@@ -88,7 +90,7 @@ server {
     root         /usr/share/nginx/html;
 }
 ```
-## Start nginx
+## Start Nginx
 ```
 service nginx start
 ```
@@ -113,12 +115,12 @@ sudo service postgresql initdb
 sudo service postgresql start
 ```
 
-## Login in with postgre
+## Login in with postgres
 ```
 sudo -u postgres psql
 ```
 
-## Change password
+## Change Password
 ```
 \password postgres
 ```
@@ -127,7 +129,7 @@ sudo -u postgres psql
 ```
 \q
 ```
-## Enable remote access
+## Enable Remote Access
 ```
 sudo vi /var/lib/pgsql9/data/pg_hba.conf
 ```
@@ -135,8 +137,7 @@ Add you IP to trust IP
 ```
 host all all 125.69.29.0/24     trust
 ```
-Also change this line
-From
+Also change this line from
 ```
 host    all             all             127.0.0.1/32            ident
 ```
@@ -152,11 +153,11 @@ Change
 ```
 #listen_addresses = 'localhost'
 ```
-To:
+To
 ```
 listen_addresses = '*'
 ```
-## Auto Start Postgresql
+## Auto Start PostgreSQL
 ```
 sudo chkconfig --list postgresql
 sudo chkconfig postgresql on
