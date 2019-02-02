@@ -72,8 +72,8 @@ server {
     listen       [::]:80;
     server_name  shenhe.org;
     root         /usr/share/nginx/html;
-	location / {
-    	proxy_connect_timeout 300;
+    location / {
+        proxy_connect_timeout 300;
         proxy_send_timeout 300;
         proxy_read_timeout 300;
         proxy_pass http://localhost:8080;
@@ -161,4 +161,18 @@ listen_addresses = '*'
 ```
 sudo chkconfig --list postgresql
 sudo chkconfig postgresql on
+```
+
+## Add swap to EC2
+```
+sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=2048
+sudo /sbin/mkswap /var/swap.1
+sudo chmod 600 /var/swap.1
+sudo /sbin/swapon /var/swap.1
+```
+
+## Auto mount Swap
+To enable it by default after reboot, add this line to /etc/fstab:
+```
+/var/swap.1  swap        swap    defaults        0   0
 ```
